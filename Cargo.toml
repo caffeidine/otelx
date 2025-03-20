@@ -1,0 +1,11 @@
+[package]
+name = "otelx"
+version = "0.0.1"
+edition = "2024"
+authors = ["Lucas Jahier <lucas.jahier@stratorys.com>"]
+description = "A minimal and unified interface for using OpenTelemetry and OpenTelemetry SDK in Rust."
+license = "MIT"
+
+[dependencies]
+opentelemetry = "0.28"
+opentelemetry_sdk = "0.28"
