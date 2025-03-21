@@ -7,7 +7,7 @@ pub trait Traceable {
 }
 
 /// Trait that adapts a Future before tracing.
-pub trait TraceAdapter<Fut> {
+pub trait TraceWrapper<Fut> {
     type Output: Future;
 
     fn adapt(fut: Fut) -> Self::Output;

@@ -16,10 +16,10 @@ impl Parse for Args {
 
 #[proc_macro_attribute]
 pub fn tracing(args: TokenStream, input: TokenStream) -> TokenStream {
+    // Analyse des arguments de l'attribut
     let Args(args) = syn::parse_macro_input!(args as Args);
     let mut semantic = None;
     let mut span_name = None;
-
     for meta in args.iter() {
         if let Meta::NameValue(nv) = meta {
             if nv.path.is_ident("semantic") {
@@ -38,13 +38,39 @@ pub fn tracing(args: TokenStream, input: TokenStream) -> TokenStream {
     let sig = &input_fn.sig;
     let block = &input_fn.block;
 
+    let mut param_inserts = Vec::new();
+    for arg in sig.inputs.iter() {
+        if let syn::FnArg::Typed(pat_type) = arg {
+            if let syn::Pat::Ident(pat_ident) = &*pat_type.pat {
+                let ident = &pat_ident.ident;
+                let name = ident.to_string();
+                param_inserts.push(quote! {
+                    map.insert(#name, format!("{:?}", #ident));
+                });
+            }
+        }
+    }
+    let param_capture = quote! {
+        let __otel_params: ::std::collections::HashMap<&'static str, String> = {
+            let mut map = ::std::collections::HashMap::new();
+            #(#param_inserts)*
+            map
+        };
+    };
+
     let expanded = quote! {
         #(#attrs)*
         #vis #sig {
-            otelx::trace_with_adapter(#semantic, #span_name, async move {
-                let __res = async move #block .await;
-                otelx_axum::AxumResponse(__res)
-            }).await.into()
+            #param_capture
+            otelx::trace_with_adapter(
+                #semantic,
+                #span_name,
+                async move {
+                    let __res = async move #block .await;
+                    __res
+                },
+                __otel_params
+            ).await.into()
         }
     };
 
