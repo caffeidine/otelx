@@ -1,0 +1,12 @@
+[package]
+name = "otelx-axum"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+http = { git = "https://github.com/ljahier/http.git", branch = "feature/impl-display-for-version" }
+axum = "0.8.1"
+opentelemetry = "0.28.0"
+opentelemetry_sdk = "0.28.0"
+
+otelx-core = { path = "../otelx-core" }
