@@ -1,0 +1,32 @@
+[package]
+name = "otelx"
+version = "0.0.1"
+edition = "2024"
+authors = ["Lucas Jahier <lucas.jahier@stratorys.com>"]
+description = "A minimal and unified interface for using OpenTelemetry and OpenTelemetry SDK in Rust."
+license-file = "LICENSE"
+repository = "https://github.com/caffeidine/otelx"
+homepage = "https://github.com/caffeidine/otelx"
+categories = [
+  "development-tools::debugging",
+  "development-tools::profiling",
+  "development-tools",
+]
+keywords = ["opentelemetry", "tracing", "telemetry", "observability"]
+
+[dependencies]
+async-trait = "0.1.88"
+log = "0.4.26"
+opentelemetry = { version = "0.28", features = ["trace"] }
+opentelemetry-stdout = "0.28.0"
+opentelemetry_sdk = { version = "0.28", features = ["trace"] }
+tokio = { version = "1.44.1", features = ["full"] }
+
+otelx-core = { path = "../otelx-core" }
+otelx-attributes = { path = "../otelx-attributes" }
+otelx-axum = { path = "../otelx-axum", optional = true }
+
+
+[features]
+default = []
+axum = ["otelx-axum"]
