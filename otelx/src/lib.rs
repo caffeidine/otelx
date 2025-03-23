@@ -1,11 +1,9 @@
-pub mod tracing;
+pub use otelx_core::*;
 
-pub use opentelemetry::global::BoxedSpan;
-pub use opentelemetry::trace::Span;
-pub use opentelemetry::{Context, KeyValue};
+#[cfg(feature = "axum")]
+pub use otelx_axum::*;
 
-pub use tracing::{trace_block, trace_with_adapter};
-
-pub use otelx_core::{TraceWrapper, Traceable};
+#[cfg(feature = "sqlx")]
+pub use otelx_sqlx::*;
 
 pub use otelx_attributes::tracing;

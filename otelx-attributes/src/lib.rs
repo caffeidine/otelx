@@ -62,7 +62,7 @@ pub fn tracing(args: TokenStream, input: TokenStream) -> TokenStream {
         #(#attrs)*
         #vis #sig {
             #param_capture
-            otelx::trace_with_adapter(
+            otelx_core::trace_with_adapter::<_, _, _, otelx_core::DefaultTraceWrapper>(
                 #semantic,
                 #span_name,
                 async move {

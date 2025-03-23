@@ -22,11 +22,13 @@ opentelemetry-stdout = "0.28.0"
 opentelemetry_sdk = { version = "0.28", features = ["trace"] }
 tokio = { version = "1.44.1", features = ["full"] }
 
+# core + proc macro
 otelx-core = { path = "../otelx-core" }
 otelx-attributes = { path = "../otelx-attributes" }
+
+# integrations
 otelx-axum = { path = "../otelx-axum", optional = true }
 otelx-sqlx = { path = "../otelx-sqlx", optional = true }
-
 
 [features]
 default = []

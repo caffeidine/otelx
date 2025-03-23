@@ -1,3 +1,9 @@
 [workspace]
 resolver = "2"
-members = ["otelx", "otelx-axum", "otelx-attributes", "otelx-core", "otelx-sqlx"]
+members = [
+  "otelx",
+  "otelx-axum",
+  "otelx-attributes",
+  "otelx-core",
+  "otelx-sqlx",
+]
