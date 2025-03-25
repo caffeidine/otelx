@@ -1,0 +1,9 @@
+[package]
+name = "otelx-core"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+opentelemetry = "0.29.0"
+opentelemetry-http = "0.29.0"
+opentelemetry_sdk = "0.29.0"

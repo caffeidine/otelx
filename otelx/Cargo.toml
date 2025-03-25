@@ -18,3 +18,7 @@ keywords = ["opentelemetry", "tracing", "telemetry", "observability"]
 [dependencies]
 opentelemetry = "0.28"
 opentelemetry_sdk = "0.28"
+
+otelx-core = { path = "../otelx-core" }
+otelx-attributes = { path = "../otelx-attributes" }
+otelx-axum = { path = "../otelx-axum" }

@@ -1,3 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["otelx"]
+members = ["otelx", "otelx-attributes", "otelx-axum", "otelx-core"]
+
+[patch.crates-io]
+http = { git = "https://github.com/ljahier/http.git", branch = "feature/impl-display-for-version" }

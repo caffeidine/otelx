@@ -1,0 +1,13 @@
+[package]
+name = "otelx-axum"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+axum = "0.8.1"
+opentelemetry = "0.29.0"
+opentelemetry-http = "0.29.0"
+
+otelx-core = { path = "../otelx-core" }
+tower = "0.5.2"
